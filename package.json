@@ -1,0 +1,22 @@
+{
+  "name": "aphone",
+  "version": "0.0.1",
+  "description": "Phonebook for any SIP phone",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antirek/aphone.git"
+  },
+  "author": "Sergey Dmitriev <antirek@yandex.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/antirek/aphone/issues"
+  },
+  "homepage": "https://github.com/antirek/aphone#readme",
+  "dependencies": {
+    "mongoose": "^5.3.3"
+  }
+}
