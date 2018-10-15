@@ -4,7 +4,8 @@
   "description": "Phonebook for any SIP phone",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,9 @@
   },
   "homepage": "https://github.com/antirek/aphone#readme",
   "dependencies": {
-    "mongoose": "^5.3.3"
+    "config": "^2.0.1",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.3",
+    "phonebook-generator": "0.0.1"
   }
 }

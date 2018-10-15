@@ -1,8 +1,12 @@
 var mongoose = require('mongoose');
 
-var ResourceSchema = function (collection) {
+var PhonebookSchema = (collection) => {
     return new mongoose.Schema({
         title: {
+          type: String,
+          required: true
+        },
+        label: {
           type: String,
           required: true
         },
@@ -14,12 +18,12 @@ var ResourceSchema = function (collection) {
         items: [
           {
             name: String,
-            phones: Array
+            phone: String
           }
         ]
     }, {
         collection: collection
     });
-
 };
-module.exports = ResourceSchema;
+
+module.exports = PhonebookSchema;
