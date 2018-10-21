@@ -1,23 +1,23 @@
 const mongoose = require('mongoose');
 const config = require('config');
 
-const PhonebookSchema = require('./models/phonebook');
+const phonebookSchema = require('./models/phonebook');
 
 
-var Phonebook = mongoose.model(
-  'Phonebook', PhonebookSchema('phonebook')
+const Phonebook = mongoose.model(
+    'Phonebook', phonebookSchema('phonebook')
 );
 
-mongoose.connect('mongodb://localhost/phonebook', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/phonebook', {useNewUrlParser: true});
 const token = '561a58';
 
-const { DigiumGenerator, 
-        YealinkGenerator, 
-        GrandstreamGenerator,
-        FanvilGenerator, 
-        SnomGenerator, 
-        HtekGenerator,
-      } = require('phonebook-generator')
+const {DigiumGenerator,
+  YealinkGenerator,
+  GrandstreamGenerator,
+  FanvilGenerator,
+  SnomGenerator,
+  HtekGenerator,
+} = require('phonebook-generator');
 
 const vendors = {
   yealink: new YealinkGenerator(),
@@ -27,16 +27,15 @@ const vendors = {
   dlink: new FanvilGenerator(),
   snom: new SnomGenerator(),
   htek: new HtekGenerator(),
-}
+};
 
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 
-var bodyParser = require('body-parser');
-// normally you'd just do require('express-openapi'), but this is for test purposes.
-var openapi = require('express-openapi');
-var path = require('path');
-var cors = require('cors');
+const bodyParser = require('body-parser');
+const openapi = require('express-openapi');
+const path = require('path');
+const cors = require('cors');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -47,27 +46,26 @@ openapi.initialize({
   paths: path.resolve(__dirname, 'api-routes'),
   dependencies: {
     Phonebook,
-  }
+  },
 });
 
 
 app.get([
-    '/v1/phonebook/:vendor/:token/:index',
-    '/v1/phonebook/:vendor/:token'
-  ], (req, res) => {
-
+  '/v1/phonebook/:vendor/:token/:index',
+  '/v1/phonebook/:vendor/:token',
+], (req, res) => {
   const reqToken = req.params.token;
-  const index = req.params.index || 0;
+  // const index = req.params.index || 0;
   const vendor = req.params.vendor;
-  console.log('request', vendor, reqToken)
+  console.log('request', vendor, reqToken);
 
   if (reqToken !== token) {
-    console.log('request token', reqToken, 'is not valid')
-    res.end()
-    return
+    console.log('request token', reqToken, 'is not valid');
+    res.end();
+    return;
   }
 
-/*
+  /*
   var phonebook = new Phonebook({
     title: 'New',
     label: 'main',
@@ -80,20 +78,20 @@ app.get([
   phonebook.save();
 */
   Phonebook.findOne()
-    //.then(res => console.log(res))
-    .then((phonebook) => {
-        return phonebook.items
-    })
-    .then(json => {
-      return vendors[vendor].prepareXML(json)
-    })
-    .then(v => {
-      res.set('Content-Type', 'text/xml').send(v)
-    })
-    .catch(err => {
-      console.log(err)
-      res.end()
-    })
+  // .then(res => console.log(res))
+      .then((phonebook) => {
+        return phonebook.items;
+      })
+      .then((json) => {
+        return vendors[vendor].prepareXML(json);
+      })
+      .then((v) => {
+        res.set('Content-Type', 'text/xml').send(v);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.end();
+      });
 });
 
 app.get('/', (req, res) => {

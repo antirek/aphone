@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index"
+    "start": "node index",
+    "lint": "eslint --fix ."
   },
   "repository": {
     "type": "git",
@@ -25,5 +26,9 @@
     "express-openapi": "^3.0.3",
     "mongoose": "^5.3.3",
     "phonebook-generator": "0.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.7.0",
+    "eslint-config-google": "^0.11.0"
   }
 }

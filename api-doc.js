@@ -1,45 +1,45 @@
-// args.apiDoc needs to be a js object.  This file could be a json file, but we can't add
-// comments in json files.
+// args.apiDoc needs to be a js object.  This file could be a json file,
+// but we can't add comments in json files.
 module.exports = {
   swagger: '2.0',
-  //host: "localhost",
+  // host: "localhost",
   // all routes will now have /v3 prefixed.
   basePath: '/v3',
   schemes: ['http'],
 
   info: {
     title: 'express-openapi project',
-    version: '3.0.0'
+    version: '3.0.0',
   },
 
   definitions: {
     Error: {
-      additionalProperties: true
+      additionalProperties: true,
     },
     User: {
       properties: {
         name: {
-          type: 'string'
+          type: 'string',
         },
         phone: {
-          type: 'string'
-        }
+          type: 'string',
+        },
       },
-      required: ['name', 'phone']
+      required: ['name', 'phone'],
     },
     Phonebook: {
       properties: {
         title: {
-          type: 'string'
+          type: 'string',
         },
         items: {
           type: 'array',
           items: {
-            $ref: '#/definitions/User'
-          }
-        }
+            $ref: '#/definitions/User',
+          },
+        },
       },
-      required: ['title', 'items']
+      required: ['title', 'items'],
     },
   },
   // paths are derived from args.routes.  These are filled in by fs-routes.
