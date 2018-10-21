@@ -18,8 +18,11 @@
   },
   "homepage": "https://github.com/antirek/aphone#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "config": "^2.0.1",
+    "cors": "^2.8.4",
     "express": "^4.16.4",
+    "express-openapi": "^3.0.3",
     "mongoose": "^5.3.3",
     "phonebook-generator": "0.0.1"
   }

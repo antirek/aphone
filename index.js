@@ -32,6 +32,25 @@ const vendors = {
 var express = require('express');
 var app = express();
 
+var bodyParser = require('body-parser');
+// normally you'd just do require('express-openapi'), but this is for test purposes.
+var openapi = require('express-openapi');
+var path = require('path');
+var cors = require('cors');
+
+app.use(cors());
+app.use(bodyParser.json());
+
+openapi.initialize({
+  apiDoc: require('./api-doc.js'),
+  app: app,
+  paths: path.resolve(__dirname, 'api-routes'),
+  dependencies: {
+    Phonebook,
+  }
+});
+
+
 app.get([
     '/v1/phonebook/:vendor/:token/:index',
     '/v1/phonebook/:vendor/:token'
