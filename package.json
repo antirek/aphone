@@ -2,11 +2,11 @@
   "name": "aphone",
   "version": "0.0.1",
   "description": "Phonebook for any SIP phone",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index",
-    "lint": "eslint --fix ."
+    "lint-fix": "eslint --fix ."
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "config": "^2.0.1",
     "cors": "^2.8.4",
     "express": "^4.16.4",
+    "express-ip": "^1.0.3",
     "express-openapi": "^3.0.3",
     "mongoose": "^5.3.3",
     "phonebook-generator": "0.0.1"
